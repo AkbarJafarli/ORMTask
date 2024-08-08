@@ -2,9 +2,16 @@
 using ORMTask.Services;
 
 ProductService productService = new ProductService();
-Product product = new Product
+//Product product = new Product
+//{
+//    Name = "Spagetti",
+//    Price = 15
+//};
+//await productService.CreateAsync(product);
+
+List<Product> products = await productService.GetAllAsync();
+
+foreach (Product product in products)
 {
-    Name = "Spagetti",
-    Price = 15
-};
-await productService.CreateAsync(product);
+    Console.WriteLine($"Id:{product.Id} - Name:{product.Name} - Price:{product.Price}");
+}

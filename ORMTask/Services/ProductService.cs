@@ -1,4 +1,5 @@
-﻿using ORMTask.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using ORMTask.Contexts;
 using ORMTask.Models;
 
 namespace ORMTask.Services
@@ -13,9 +14,13 @@ namespace ORMTask.Services
             //    Name = "Spagetti",
             //    Price = 15
             //};
-
             await context.Products.AddAsync(product);
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Product>> GetAllAsync()
+        {
+            AppDbContext context = new AppDbContext();
+            return await context.Products.ToListAsync();
         }
 
     }
